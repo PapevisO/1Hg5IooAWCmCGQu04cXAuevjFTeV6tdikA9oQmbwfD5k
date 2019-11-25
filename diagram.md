@@ -26,9 +26,11 @@ Estimated average query for coverage of each partner:
 2. with major merchant: 1000 * 25 000 / 1e8 = 0.25s
 3. with all merchants: 1000 * 200 000 / 1e8 = 2.00s
 * Apply safety margin for every value = 4.0
-* Quote: "sales team should be able to generate coverages within 1 second"
+* Quote: "sales team should be able to generate coverages within 1 second" 
+* Assume that there will be only one concurrent request from sales team at a time
 
-Conclusion: Split computation of radiuses (earth_distance) between at least 8 concurrent services
+Estimation #3 is critical, what can take 2.00s must securely take 0.25s. This leads to a next:
+Conclusion: We have to split computation of radiuses (earth_distance) between at least 8 concurrent database replication services
 
 
 ![Frontend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=0&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
