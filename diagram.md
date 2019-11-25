@@ -1,44 +1,44 @@
-          ┌─┐                                                                                                     
-          ║"│                                                                                                     
-          └┬┘               ┌──────────────┐                                                                      
-          ┌┼┐               │Location      │          ┌─────────┐                                                 
-           │                │management    │          │cache eg.│          ┌──────┐          ┌──────────┐         
-          ┌┴┐               │GUI helper app│          │Redis or │          │event │          │AMQP state│         
-      InComm                │and API       │          │Memcached│          │API   │          │machine   │         
-      nsales team           └──────┬───────┘          └────┬────┘          └──┬───┘          └────┬─────┘         
-           │       sign in         │                       │                  │                   │               
-           │──────────────────────>│                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │     grant access      │                       │                  │                   │               
-           │<──────────────────────│                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │ post merchant's       │                       │                  │                   │               
-           │ locations collection  │                       │                  │                   │               
-           │──────────────────────>│                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │                       │ ─────────────────────>│                  │                   │               
-           │                       │                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │                       │ ─────────────────────────────────────────>                   │               
-           │                       │                       │                  │                   │               
-           │                       │                       │                  │                   │               
-           │                       │                       │                  │ ──────────────────>               
-           │                       │                       │                  │                   │               
-           │                       │                       │                  │                   │────┐          
-           │                       │                       │                  │                   │    │ daemon   
-           │                       │                       │                  │                   │<───┘ pending  
-           │                       │                       │                  │                   │      db master
-           │                       │                       │                  │                   │      unlock   
-           │                       │                       │                  │                   │               
-      InComm                ┌──────┴───────┐          ┌────┴────┐          ┌──┴───┐          ┌────┴─────┐         
-      nsal┌─┐team           │Location      │          │cache eg.│          │event │          │AMQP state│         
-          ║"│               │management    │          │Redis or │          │API   │          │machine   │         
-          └┬┘               │GUI helper app│          │Memcached│          └──────┘          └──────────┘         
-          ┌┼┐               │and API       │          └─────────┘                                                 
-           │                └──────────────┘                                                                      
-          ┌┴┐                                                                                                     
-                                                                                                                  
+          ┌─┐                                                                                           
+          ║"│                                                                                           
+          └┬┘              ┌──────────────┐                                                             
+          ┌┼┐              │Location      │          ┌─────────┐                                        
+           │               │management    │          │cache eg.│          ┌──────────┐          ┌──────┐
+          ┌┴┐              │GUI helper app│          │Redis or │          │AMQP state│          │event │
+      InComm               │and API       │          │Memcached│          │machine   │          │API   │
+      sales team           └──────┬───────┘          └────┬────┘          └────┬─────┘          └──┬───┘
+          │        sign in        │                       │                    │                   │    
+          │ ──────────────────────>                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │      grant access     │                       │                    │                   │    
+          │ <──────────────────────                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │  post merchant's      │                       │                    │                   │    
+          │  locations collection │                       │                    │                   │    
+          │ ──────────────────────>                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │                       │ ─────────────────────>│                    │                   │    
+          │                       │                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │                       │ ───────────────────────────────────────────────────────────────>    
+          │                       │                       │                    │                   │    
+          │                       │                       │                    │                   │    
+          │                       │                       │                    │ <──────────────────    
+          │                       │                       │                    │                   │    
+          │                       │                       │                    │────┐              │    
+          │                       │                       │                    │    │ daemon       │    
+          │                       │                       │                    │<───┘ pending      │    
+          │                       │                       │                    │      db master    │    
+          │                       │                       │                    │      unlock       │    
+          │                       │                       │                    │                   │    
+      InComm               ┌──────┴───────┐          ┌────┴────┐          ┌────┴─────┐          ┌──┴───┐
+      sale┌─┐eam           │Location      │          │cache eg.│          │AMQP state│          │event │
+          ║"│              │management    │          │Redis or │          │machine   │          │API   │
+          └┬┘              │GUI helper app│          │Memcached│          └──────────┘          └──────┘
+          ┌┼┐              │and API       │          └─────────┘                                        
+           │               └──────────────┘                                                             
+          ┌┴┐                                                                                           
+                                                                                                                                                                                                                          
                                                                                                                   
                                                  ┌───────────┐          ┌───────────┐                 
      ┌──────┐          ┌──────────┐              │PostgreSQL │          │PostgreSQL │                 
