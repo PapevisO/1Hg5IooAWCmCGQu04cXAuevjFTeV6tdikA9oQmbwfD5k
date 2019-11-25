@@ -21,7 +21,7 @@ amqp -> amqp: daemon\npending\nDB master\nunlock
 participant "event \nAPI" as eapi
 participant "AMQP state\nmachine" as amqp
 participant "PostgreSQL\nreplication\nmaster" as pgm
-participant "PostgreSQL\nreplication\n#[0..7] slave" as pgs
+participant "PostgreSQL\nreplication\nslave No.[0..7]" as pgs
 
 amqp -> amqp: daemon\npending\nDB master\nunlock
 amqp <-> pgm: is DB replicate queue empty?
