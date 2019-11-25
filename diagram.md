@@ -2,22 +2,33 @@
 
 ## PROBLEM
 
-estimated rows processed by earth_distance (psql 9.4+) per 22ms : 2.2e6 ~ 100M/s
+Estimated rows processed by earth_distance (psql 9.4+) 2.2 million records processed per 22ms
+Which means 100 million per second = 1e8 s^-1
 
 <pre>
-|-----------------------------------------|
-|      \_     |   partners  |  merchants  |
+⸝-----------------------------------------⸜
+| ‾‾‾⸌ᐧ---⸜___ |   partners  |  merchants  |
 |-------------|---------------------------|
 |   number    |     700     |    200      |
 |-------------|---------------------------|
-|   average   |             |             |
-|  locations  |     1000    |    1000     |
+|  locations  |             |             |
+|   average:  |    1000     |    1000     |
+|   maximum:  |    25000    |    25000    |
 |-------------|---------------------------|
 |  estimated  |             |             |
 |    total    |   700 000   |   200 000   |
 |  locations  |             |             |
 |-------------|---------------------------|
 </pre>
+
+Estimated average query for coverage of each partner:
+1. with average merchant: 1000 * 1000 / 1e8 = 0.01s
+2. with major merchant: 1000 * 25 000 / 1e8 = 0.25s
+3. with all merchants: 1000 * 200 000 / 1e8 = 2.00s
+* Apply safety margin for every value = 4.0
+* Quote: "sales team should be able to generate coverages within 1 second"
+
+Conclusion: Split computation of radiuses (earth_distance) between at least 8 concurrent services
 
 
 ![Frontend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=0&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
