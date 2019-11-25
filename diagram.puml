@@ -1,0 +1,43 @@
+@startuml
+
+!$page = 1
+
+
+!if ($page == 0)
+
+actor "InComm\nsales team" as ist
+participant "Location\nmanagement\nGUI helper app\nand API" as lmapi
+participant "cache eg.\nRedis or\nMemcached" as cache
+participant "AMQP state\nmachine" as amqp
+participant "event \nAPI" as eapi
+
+ist -> lmapi: sign in
+lmapi -> ist: grant access
+ist -> lmapi: post merchant's\nlocations collection
+lmapi -> cache
+lmapi -> eapi
+eapi -> amqp
+amqp -> amqp: daemon\npending\nDB master\nunlock
+
+!else
+
+participant "event \nAPI" as eapi
+participant "AMQP state\nmachine" as amqp
+participant "PostgreSQL\nreplication\nmaster" as pgm
+participant "PostgreSQL\nreplication\ni-th slave" as pgs
+
+amqp -> amqp: daemon\npending\nDB master\nunlock
+amqp <-> pgm: is DB replicate queue empty?
+amqp -> eapi: enqueue\nDB lock
+eapi -> amqp
+cache -> amqp: fetch cached\ncollection
+amqp -> pgm: post collection SQL query
+amqp -> eapi: enqueue DB\npropagation
+eapi -> amqp
+amqp -> cache: flush collection
+amqp -> eapi: enqueue DB\nunlock
+eapi -> amqp
+
+!endif
+
+@enduml
