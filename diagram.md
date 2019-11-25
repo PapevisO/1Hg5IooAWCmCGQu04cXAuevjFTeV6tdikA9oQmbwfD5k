@@ -32,6 +32,10 @@ Estimated average query for coverage of each partner:
 Estimation #3 is critical, what can take 2.00s must securely take 0.25s. This leads to a next:
 Conclusion: We have to split computation of radiuses (earth_distance) between at least 8 concurrent database replication services
 
+### Diagram of updates to merchant locations 
+
 ![Frontend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=0&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
+
+### Diagram of daemon processing merchants locations records
 
 ![Backend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=1&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
