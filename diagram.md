@@ -39,3 +39,7 @@ Conclusion: We have to split computation of radiuses (earth_distance) between at
 ### Diagram of daemon processing merchants locations records
 
 ![Backend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=1&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
+
+### Diagram of mapping service application
+
+![Backend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=2&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
