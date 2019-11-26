@@ -57,6 +57,8 @@ pgs -> ampq: query response
 ampq -> cache: process and\ncache response
 amqp -> eapi
 eapi -> ist
-ist -> msapp: request cached\nprocessed response
+ist -> msapp: request for cached\nprocessed response
+msapp <-> cache
+msapp -> isd: return coverage/ncollection
 
 @enduml
