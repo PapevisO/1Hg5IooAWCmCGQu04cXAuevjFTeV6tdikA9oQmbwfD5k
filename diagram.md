@@ -43,3 +43,15 @@ Conclusion: We have to split computation of radiuses (earth_distance) between at
 ### Diagram of mapping service application
 
 ![Backend for Backend location updating diagram](http://www.plantuml.com/plantuml/proxy?cache=no&idx=2&src=https://raw.githubusercontent.com/PapevisO/1Hg5IooAWCmCGQu04cXAuevjFTeV6tdikA9oQmbwfD5k/master/diagram.puml)
+
+Infrastructure lists:
+
+<pre>
+11 cloud or hardware server instances
+  10 are dedicated for PostgreSQL replication slaves
+  1 is dedicated for:
+    PostgreSQL replication master
+    Proxy server and applications:
+      Location management GUI
+      Location management GUI
+</pre>
