@@ -36,3 +36,18 @@ amqp -> eapi: enqueue DB\nunlock
 eapi -> amqp
 
 @enduml
+
+@startuml
+
+participant "event \nAPI" as eapi
+participant "AMQP state\nmachine" as amqp
+participant "PostgreSQL\nreplication\nmaster" as pgm
+participant "PostgreSQL\nreplication\nslave No.[0..7]" as pgs
+
+participant "Mapping\nservice\nGUI application" as msapp
+
+ist -> msapp: sign in
+msapp -> ist: grant access
+ist -> msapp: submit request
+
+@enduml
